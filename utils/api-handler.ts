@@ -9,12 +9,13 @@ export function apiHandler(handler: NextApiHandler): NextApiHandler {
 
     try {
       await handler(req, res);
-    } catch (error: any) {
-      const message = Array.isArray(error.errors)
-        ? getZodError(error.errors[0])
-        : typeof error.http_code === 'number'
+    } catch (error: unknown) {
+      const err = error as { errors?: unknown[]; http_code?: number; message?: string };
+      const message = Array.isArray(err.errors)
+        ? getZodError(err.errors[0])
+        : typeof err.http_code === 'number'
         ? 'Error loading resource'
-        : error.message ?? 'Something went wrong';
+        : err.message ?? 'Something went wrong';
 
       res.status(400).json({ message });
     }

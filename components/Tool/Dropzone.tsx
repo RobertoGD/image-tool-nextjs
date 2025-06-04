@@ -27,7 +27,10 @@ export function Dropzone({ accept, onFileAccepted }: DropzoneProps) {
       setError('');
       setLoading(true);
 
-      const getError = (err: any) => err.data.message ?? err.message ?? 'Error uploading image';
+      const getError = (err: unknown) =>
+        (err as { data?: { message?: string }; message?: string }).data?.message ??
+        (err as Error).message ??
+        'Error uploading image';
 
       toast
         .promise(onFileAccepted(files[0]), {

@@ -5,12 +5,13 @@ const eslintConfig = {
     es2021: true,
     node: true,
   },
-  extends: ['next/core-web-vitals', 'standard-with-typescript', 'plugin:prettier/recommended'],
+  extends: ['next/core-web-vitals', 'plugin:@typescript-eslint/recommended', 'plugin:prettier/recommended'],
   overrides: [],
   parserOptions: {
     ecmaVersion: 'latest',
     sourceType: 'module',
     project: ['tsconfig.json'],
+    tsconfigRootDir: __dirname,
   },
   ignorePatterns: [
     '.eslintrc.js',
