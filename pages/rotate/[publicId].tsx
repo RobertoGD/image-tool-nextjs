@@ -27,8 +27,8 @@ export default function RotateEditor({ url, width, height, publicId }: BaseProps
     loadImage(url)
       .then(baseImg => {
         initialCtx.drawImage(baseImg, 0, 0);
-        (img as any).current = baseImg;
-        (ctx as any).current = initialCtx;
+        img.current = baseImg;
+        ctx.current = initialCtx;
       })
       .catch(() => toast.error('Error loading image'));
   }, [url]);

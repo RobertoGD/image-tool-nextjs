@@ -114,7 +114,7 @@ export const getServerSideProps: GetServerSideProps<DownloadProps> = async ({ qu
         editor: editor && sections.map(section => section.title.toLowerCase()).includes(editor) ? editor : null,
       },
     };
-  } catch (error) {
+  } catch {
     return { notFound: true };
   }
 };

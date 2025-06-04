@@ -19,7 +19,7 @@ export function Home({ title, description }: HomeProps) {
         <Shadow />
       </section>
       <div className="mx-auto mb-16 grid w-full gap-6 px-6 sm:max-w-4xl md:grid-cols-2">
-        {sections.map((section, i) => (
+        {sections.map(section => (
           <Translate key={section.title} className="sm:first:col-span-2">
             <Section {...section} />
           </Translate>

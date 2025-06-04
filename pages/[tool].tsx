@@ -6,8 +6,8 @@ export default function ToolHome(props: ToolProps) {
   return <Tool {...props} />;
 }
 
-export const getStaticProps: GetStaticProps<ToolProps> = context => {
-  const { tool } = context.params ?? {};
+export const getStaticProps: GetStaticProps<ToolProps> = ({ params }) => {
+  const { tool } = params ?? {};
 
   if (typeof tool !== 'string' || !Object.hasOwn(tools, tool)) {
     return {
@@ -20,7 +20,7 @@ export const getStaticProps: GetStaticProps<ToolProps> = context => {
   };
 };
 
-export const getStaticPaths: GetStaticPaths = context => {
+export const getStaticPaths: GetStaticPaths = () => {
   return {
     fallback: false,
     paths: Object.keys(tools).map(tool => ({ params: { tool } })),
